@@ -1,0 +1,48 @@
+========================================================================
+PLI IDENTIFIABILITY -- HEADLINE NUMBERS
+========================================================================
+
+[A] O2 sensitivity |dtau/dpO2| (ps/mmHg), with kappa_lipid sweep 0.1x-1.0x:
+    f_lipid=0.0:    0.087  -   0.087
+    f_lipid=0.1:    0.090  -   0.133
+    f_lipid=0.5:    0.097  -   0.388
+    f_lipid=1.0:    0.090  -   0.896
+    -> water ~ 0.087 ps/mmHg (matches Shibuya ~0.1); the [1x-10x] lipid spread IS the kappa_lipid uncertainty
+
+[B] NAIVE-READER BIAS -- composition masquerading as oxygen
+    true tissue at pO2 = 20 mmHg (hypoxic); reader assumes pure water:
+    f_lipid=0.00:   apparent pO2 error =       +0 mmHg
+    f_lipid=0.02:   apparent pO2 error =     -178 mmHg
+    f_lipid=0.05:   apparent pO2 error =     -439 mmHg
+    f_lipid=0.10:   apparent pO2 error =     -860 mmHg
+    f_lipid=0.20:   apparent pO2 error =    -1652 mmHg
+    -> even 2-5% lipid drives the apparent pO2 hundreds of mmHg off (even negative):
+       from tau alone the hypoxia read is composition-DOMINATED, not oxygen.
+
+[C] IDENTIFIABILITY at a hypoxic fatty voxel (pO2=20, f_lipid=0.10), N3=1e5:
+    tau-only : det(F)=-8.89e-20  cond=      inf  sigma(pO2)=       inf mmHg  rho=+inf
+    tau+I3   : det(F)=2.55e-01  cond= 2.69e+10  sigma(pO2)=     570.2 mmHg  rho=+0.048
+    -> tau-only: RANK-1, sigma(pO2)=inf  ==> STRUCTURALLY non-identifiable
+    -> tau+I3 : full-rank, finite        ==> rescued (but statistics-limited)
+
+[C2] Counts needed for clinically-useful pO2 precision (tau+I3):
+    sigma(pO2) <= 10.0 mmHg  ->  N3 ~ 3.3e+08 o-Ps counts
+    sigma(pO2) <=  5.0 mmHg  ->  N3 ~ 1.3e+09 o-Ps counts
+    -> ~1e8-1e9 counts: matches the field's ~3e8 estimate -> regional pooling only.
+
+[D] THE REAL LINCHPIN: does composition move I3?  (vary dI3/df)
+    dI3/df = 0.150:   sigma(pO2) =    570.2 mmHg
+    dI3/df = 0.045:   sigma(pO2) =    575.9 mmHg
+    dI3/df = 0.015:   sigma(pO2) =    622.4 mmHg
+    dI3/df = 0.000:   sigma(pO2) =      inf  (degenerate again)
+    -> as I3's COMPOSITION sensitivity -> 0, identifiability COLLAPSES to inf.
+       THIS (not dI3/dpO2~0) is the assumption the experiment must verify.
+
+[E] Correction: if oxygen ALSO moves I3, it can help if gradients stay non-collinear:
+    dI3/dpO2 = 0e+00:   sigma(pO2) =    570.2 mmHg
+    dI3/dpO2 = 1e-04:   sigma(pO2) =     91.5 mmHg
+    dI3/dpO2 = 1e-03:   sigma(pO2) =     10.7 mmHg
+    -> dI3/dpO2~0 is the PESSIMISTIC case for this baseline, not a fragile assumption.
+       Formally, the requirement is det(J) != 0 for observables (lambda3,I3).
+       (the model corrected an over-stated 'linchpin' from the planning stage.)
+========================================================================

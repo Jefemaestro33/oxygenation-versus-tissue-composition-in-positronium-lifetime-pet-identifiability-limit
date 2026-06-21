@@ -1,0 +1,5 @@
+wrote fig_bias
+wrote fig_sensitivity
+wrote fig_separability
+wrote fig_degeneracy
+figures in results/figures

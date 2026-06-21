@@ -1,0 +1,27 @@
+========================================================================
+RIGOROUS POISSON-FIM  vs  idealized analytic engine
+========================================================================
+scenario: hypoxic fatty voxel pO2=20 mmHg, f_lipid=0.10
+
+[match] N3=1e5 o-Ps counts  <=>  N_total ~ 1.10e+06 in-window events
+
+  analytic (idealized) :  sigma(pO2) =    570.2 mmHg   rho=+0.048
+  Poisson  (rigorous)  :  sigma(pO2) =    332.0 mmHg   rho=+0.695
+  -> the two BRACKET the truth. Analytic uses the field's empirical sigma_tau
+     (already includes nuisance-fitting); Poisson FIXES nuisances (optimistic)
+     but correctly exposes the tau3-I3 entanglement: rho +0.05 -> +0.70
+     (that IS the covariance Front-4 warned about). Both ~hundreds of mmHg @ N3=1e5
+     -> the conclusion is ROBUST to the noise model. See run/04_nuisance.py
+     for the nuisance-profiled, more pessimistic bound.
+
+[counts] N_total needed for sigma(pO2) target (rigorous), pO2=20, f=0.10:
+   <= 10.0 mmHg :  N_total ~ 1.2e+09   (o-Ps N3 ~ 1.1e+08)
+   <=  5.0 mmHg :  N_total ~ 4.9e+09   (o-Ps N3 ~ 4.4e+08)
+
+[linchpin, rigorous] vary I3 composition contrast dI3/df:
+   dI3/df=0.150:  sigma(pO2)=   332.0 mmHg
+   dI3/df=0.050:  sigma(pO2)=   473.3 mmHg
+   dI3/df=0.015:  sigma(pO2)=   997.7 mmHg
+   dI3/df=0.000:  sigma(pO2)=1699169788.3 mmHg
+   -> confirms the analytic finding on the realistic spectrum.
+========================================================================

@@ -1,0 +1,18 @@
+========================================================================
+MONTE-CARLO VALIDATION OF THE FIXED-NUISANCE POISSON CRLB
+========================================================================
+truth: pO2=20.0, f=0.1;  250 realizations per level
+
+N_total=8e+07   N3=7.26e+06 (fixed-nuisance CRLB: sigma_pO2=  39.0, sigma_f=0.0012)
+   pO2:  mean=   21.3   emp.std=  38.9   emp/CRLB=1.00
+   f  :  mean=0.1000   emp.std=0.0012   emp/CRLB=1.01
+
+N_total=2e+08   N3=1.82e+07 (fixed-nuisance CRLB: sigma_pO2=  24.6, sigma_f=0.0008)
+   pO2:  mean=   21.6   emp.std=  24.9   emp/CRLB=1.01
+   f  :  mean=0.1001   emp.std=0.0007   emp/CRLB=0.98
+
+PULL (pO2_hat-truth)/sigma_CRLB:  mean=+0.049  std=1.004
+  -> mean~0 & std~1 => MLE unbiased and efficient under the assumed fixed-nuisance spectrum model.
+
+wrote fig7_mc_validation.png
+========================================================================
