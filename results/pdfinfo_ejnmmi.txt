@@ -1,6 +1,6 @@
 Creator:         LaTeX via pandoc
 Producer:        xdvipdfmx (20260113)
-CreationDate:    Sat Jun 20 18:07:31 2026 CST
+CreationDate:    Sat Jun 20 18:10:27 2026 CST
 Custom Metadata: no
 Metadata Stream: no
 Tagged:          no
@@ -12,6 +12,6 @@ Pages:           12
 Encrypted:       no
 Page size:       612 x 792 pts (letter)
 Page rot:        0
-File size:       1355043 bytes
+File size:       73035 bytes
 Optimized:       no
 PDF version:     1.7

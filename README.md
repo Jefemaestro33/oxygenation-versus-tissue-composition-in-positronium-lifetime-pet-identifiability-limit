@@ -23,7 +23,8 @@ experiment.
 - **(τ, I3) rescue:** real but weak — σ(pO2) ~330-760 mmHg @ N3=1e5 (bracket: optimistic→nuisance-profiled).
 - **Linchpin (model-corrected):** separability needs a non-collinear Jacobian; in the pessimistic ∂I3/∂pO2≈0 case, it needs **∂I3/∂composition ≠ 0**.
 - **Feasibility:** clinical pO2 separation (<=10 mmHg) needs **liters** of pooled ROI even with I-124 ->
-  infeasible at native voxel scale; needs a ~10^3-10^4x yield gain.
+  infeasible at native voxel scale (needs ~10^5-10^6x effective o-Ps yield: 8e4x best-case
+  I-124/60% lipid to 2e6x for Rb-82/5%; the ~10^3-10^4x figure only holds for a pooled ~5 mL ROI).
 - **Monte Carlo:** the MLE reaches the fixed-nuisance Poisson CRLB under the forward model (pull std ~1.00);
   this validates estimator attainability, not the unmeasured biological constants.
 
@@ -46,19 +47,21 @@ python3 run/01_headline.py
 ```
 
 ## Manuscript
-- `paper/manuscript.md` — **complete v1 draft** (8 sections, abstract, 6 main figures,
-  1 supplementary Monte-Carlo figure, 2 tables, 17 refs);
-  compiles to `paper/manuscript.pdf` via `./run_all.sh` (current page count is recorded in `results/pdfinfo.txt`).
-- `paper/manuscript_ejnmmi.md` — EJNMMI main stretch-target version using the journal's
-  Original Article structure, structured abstract, statements/declarations, and Online Resource format.
-- `paper/submission_ejnmmi/` — generated submission package with DOCX/PDF manuscript,
-  cover letter, supplementary file, checklist, and high-resolution Fig1-Fig6 files.
-  Target order: EJNMMI main as stretch, EJNMMI Physics as likely transfer/primary fit,
-  then PMB or IEEE TRPMS depending on reviewer fit.
-  Preprint on bioRxiv/medRxiv only after author review. The experiment spec is in the Discussion.
+- `paper/manuscript_ejnmmi.md` — **canonical single submission manuscript** for EJNMMI:
+  Original Article structure, structured abstract, statements/declarations, 6 separate main
+  figures, 4 tables, and one Online Resource. This is the source to submit.
+- `paper/submission_ejnmmi/` — **complete EJNMMI submission bundle, ready to upload**:
+  EJNMMI-formatted manuscript (PDF + DOCX), cover letter (PDF + DOCX), Online Resource 1
+  (Monte-Carlo supplement), Fig1-Fig6, and the submission checklist. See
+  `paper/submission_ejnmmi/README.md` for the upload list.
+- `paper/manuscript.md` — extended development/preprint draft retained for provenance and
+  audit history; it is not the active submission source.
+
+  Target order: EJNMMI main, then EJNMMI Physics / PMB / IEEE TRPMS depending on reviewer fit.
+  Preprint on bioRxiv/medRxiv only after author review. The decisive experiment spec is in the Discussion.
 
 ## Remaining
-- Author review/polish of the draft; decide submission timing.
+- Author final read-through and EditorialManager metadata entry.
 - Journal-strength empirical anchor: a real-data I3 re-analysis or a minimal PALS measurement.
 - Optional robustness: profile-nuisance Monte Carlo if a reviewer demands estimator validation
   under the conservative nuisance model.
@@ -68,13 +71,27 @@ python3 run/01_headline.py
 ./run_all.sh
 ```
 
+To reproduce **only the numerical results and figures** (no PDF toolchain needed):
+```
+./run_results.sh
+```
+To build **only the PDFs** from the sources (needs `pandoc` + `xelatex`):
+```
+./build_paper.sh
+```
+
 Use a specific environment with:
 ```
-PYTHON=/path/to/python ./run_all.sh
+PYTHON=/path/to/python ./run_all.sh      # (also honored by ./run_results.sh)
 ```
 
 Python dependencies are listed in `requirements.txt`; PDF compilation also needs `pandoc`
 and `xelatex`. `pdfinfo` is optional and only records the PDF metadata.
+
+The paper build is **incremental and reproducible**: a document is rebuilt only when its
+source is newer, and embedded dates are pinned via `SOURCE_DATE_EPOCH` (default: the HEAD
+commit time). Re-running the pipeline therefore leaves git clean unless a source changed.
+Override the date with `SOURCE_DATE_EPOCH=<unix-time> ./build_paper.sh` if needed.
 
 ## License
 - Code: MIT (`LICENSE-CODE.md`).

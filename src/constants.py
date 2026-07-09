@@ -8,8 +8,8 @@ they are exactly what the decisive experiment (deliverable #5) must measure.
 """
 
 # --- o-Ps baseline lifetimes tau0 (MEASURED) ---
-TAU_WATER  = 1.815   # ns, pure water; EJNMMI Phys 2024 (1.815 +/- 0.013)
-TAU_LIPID  = 2.60    # ns, adipose tissue; Sci Rep 2024 / PMC10036702 (range 2.5-2.7)
+TAU_WATER  = 1.815   # ns, operational water reference; Steinberger EJNMMI Phys 2024, consistent with 124I LAFOV ~1.82 ns
+TAU_LIPID  = 2.60    # ns, adipose tissue; Avachat et al., Sci Rep 2024, PMID 39256482 / PMC11387643 (range 2.5-2.7)
 TAU_MUSCLE = 2.03    # ns, reference; Sci Rep 2024
 TAU_LIVER  = 2.04    # ns, reference; Sci Rep 2024
 
