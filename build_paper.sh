@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # Build the manuscript PDFs/DOCX and assemble the EJNMMI submission package.
 #
-# Incremental + reproducible: a target is rebuilt only when its source is newer
-# (Make-style staleness), embedded dates are pinned via SOURCE_DATE_EPOCH, and all
-# copies are content-conditional. Consequence: re-running the pipeline does NOT
-# dirty git unless a source actually changed. Depends only on results/figures/
-# (produced by ./run_results.sh), the single source of truth for every figure.
+# Incremental + source-date controlled: a target is rebuilt only when its source
+# is newer (Make-style staleness), embedded dates are pinned via SOURCE_DATE_EPOCH,
+# and all copies are content-conditional. Re-running a populated tree should not
+# dirty git unless a source actually changed.
+#
+# Reproducibility scope: numerical results and PNG figures are byte-reproducible.
+# Pandoc/TeX PDF and DOCX containers are content-reproducible and idempotent in a
+# populated tree, but not promised bit-for-bit identical after deleting and
+# rebuilding every binary artifact from scratch. See REPRODUCIBILITY.md.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -18,9 +22,19 @@ done
 [ -f results/figures/fig1_bias_surface.png ] || {
   echo "figures missing in results/figures/; run ./run_results.sh first" >&2; exit 1; }
 
-# Pin embedded build dates so re-runs are byte-stable (DOCX becomes byte-identical;
-# PDF /ID and dates stop drifting). Defaults to the HEAD commit time; override freely.
-export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git -C "$ROOT" log -1 --format=%ct 2>/dev/null || echo 1782000627)}"
+# Pin embedded build dates. Prefer the versioned package epoch so rebuilding after
+# a later commit does not silently change document metadata; override freely.
+if [ -z "${SOURCE_DATE_EPOCH:-}" ]; then
+  if [ -f "$ROOT/.source-date-epoch" ]; then
+    SOURCE_DATE_EPOCH="$(tr -dc '0-9' < "$ROOT/.source-date-epoch")"
+  else
+    SOURCE_DATE_EPOCH="$(git -C "$ROOT" log -1 --format=%ct 2>/dev/null || echo 1782000627)"
+  fi
+fi
+case "$SOURCE_DATE_EPOCH" in
+  ''|*[!0-9]*) echo "invalid SOURCE_DATE_EPOCH: $SOURCE_DATE_EPOCH" >&2; exit 1 ;;
+esac
+export SOURCE_DATE_EPOCH
 export FORCE_SOURCE_DATE=1
 
 cp_diff() { cmp -s "$1" "$2" 2>/dev/null || cp "$1" "$2"; }          # copy only if bytes differ

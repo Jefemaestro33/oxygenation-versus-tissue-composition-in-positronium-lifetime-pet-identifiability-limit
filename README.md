@@ -46,6 +46,19 @@ experiment.
 python3 run/01_headline.py
 ```
 
+For a fully checked local reproduction, use:
+```
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-lock.txt
+./verify_reproducibility.sh
+```
+
+On the author's workstation, the audited environment was:
+```
+PYTHON=/Users/darellplascencia/tesis_env/bin/python ./verify_reproducibility.sh
+```
+
 ## Manuscript
 - `paper/manuscript_ejnmmi.md` — **canonical single submission manuscript** for EJNMMI:
   Original Article structure, structured abstract, statements/declarations, 6 separate main
@@ -86,12 +99,21 @@ PYTHON=/path/to/python ./run_all.sh      # (also honored by ./run_results.sh)
 ```
 
 Python dependencies are listed in `requirements.txt`; PDF compilation also needs `pandoc`
-and `xelatex`. `pdfinfo` is optional and only records the PDF metadata.
+and `xelatex`. `requirements-lock.txt` records the tested Python package versions from
+the reproducibility audit; `requirements.txt` is the minimal unpinned dependency list.
+`pdfinfo` is optional and only records the PDF metadata.
 
-The paper build is **incremental and reproducible**: a document is rebuilt only when its
-source is newer, and embedded dates are pinned via `SOURCE_DATE_EPOCH` (default: the HEAD
-commit time). Re-running the pipeline therefore leaves git clean unless a source changed.
-Override the date with `SOURCE_DATE_EPOCH=<unix-time> ./build_paper.sh` if needed.
+The science outputs are **byte-reproducible**: `results/01..06.txt` and
+`results/figures/*.png` are checked by `results/checksums_science.sha256`.
+The paper build is **incremental and source-date controlled**: a document is rebuilt only
+when its source is newer, and embedded dates are pinned via `SOURCE_DATE_EPOCH` (default:
+the versioned value in `.source-date-epoch`). Re-running the pipeline in a populated tree
+therefore leaves git clean unless a source changed.
+
+PDF/DOCX files are treated as editorial artifacts: they are content-reproducible and
+idempotent in a populated tree, but Pandoc/TeX containers are not guaranteed to be
+bit-for-bit identical after deleting and rebuilding every binary from scratch. See
+`REPRODUCIBILITY.md` for the audit boundary and verification commands.
 
 ## License
 - Code: MIT (`LICENSE-CODE.md`).

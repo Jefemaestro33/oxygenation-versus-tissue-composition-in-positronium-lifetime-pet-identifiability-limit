@@ -1,0 +1,5 @@
+# Tested Python package set for the reproducibility audit.
+# Install with: python -m pip install -r requirements-lock.txt
+numpy==2.4.3
+scipy==1.17.1
+matplotlib==3.11.0
