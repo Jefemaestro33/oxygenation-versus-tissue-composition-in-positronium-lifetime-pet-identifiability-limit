@@ -10,4 +10,4 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON="${PYTHON:-python3}" "$ROOT/run_results.sh"
 "$ROOT/build_paper.sh"
 
-echo "wrote results, figures, the canonical manuscript (paper/manuscript.pdf), and the EJNMMI submission bundle (paper/submission_ejnmmi/)"
+echo "wrote results, figures, the canonical EJNMMI manuscript, and the submission bundle (paper/submission_ejnmmi/)"

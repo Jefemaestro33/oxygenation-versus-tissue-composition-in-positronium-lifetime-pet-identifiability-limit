@@ -24,6 +24,4 @@ submission files against `submission_manifest.sha256`.
 
 ## Notes
 - Source of this bundle: `../manuscript_ejnmmi.md` (canonical EJNMMI submission source).
-- The generic/normal-format version of the same paper is `../manuscript.md` (development/provenance
-  draft, not the active submission source).
 - Do not hand-edit files here; edit the sources under `paper/` and rerun `build_paper.sh`.

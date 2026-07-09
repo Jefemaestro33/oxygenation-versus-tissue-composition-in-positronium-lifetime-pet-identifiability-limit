@@ -45,7 +45,6 @@ stale()  { local o=$1; shift; [ -f "$o" ] || return 0; local f;     # OUT missin
 for f in results/figures/*.png; do cp_diff "$f" "paper/figures/$(basename "$f")"; done
 FIGS=(paper/figures/*.png)
 
-stale paper/manuscript.pdf         paper/manuscript.md        "${FIGS[@]}" && (cd paper && pandoc manuscript.md -o manuscript.pdf --pdf-engine=xelatex)
 stale paper/manuscript_ejnmmi.pdf  paper/manuscript_ejnmmi.md "${FIGS[@]}" && (cd paper && pandoc manuscript_ejnmmi.md -o manuscript_ejnmmi.pdf --pdf-engine=xelatex)
 stale paper/manuscript_ejnmmi.docx paper/manuscript_ejnmmi.md "${FIGS[@]}" && (cd paper && pandoc manuscript_ejnmmi.md -o manuscript_ejnmmi.docx)
 stale paper/cover_letter_ejnmmi.pdf  paper/cover_letter_ejnmmi.md  && (cd paper && pandoc cover_letter_ejnmmi.md -o cover_letter_ejnmmi.pdf --pdf-engine=xelatex)
@@ -70,10 +69,8 @@ cp_diff results/figures/fig7_mc_validation.png paper/submission_ejnmmi/ESM_1_mon
 # pdfinfo, content-conditional so metadata files don't churn on no-op runs.
 pitmp="$(mktemp)"; trap 'rm -f "$pitmp"' EXIT
 if command -v pdfinfo >/dev/null 2>&1; then
-  pdfinfo paper/manuscript.pdf > "$pitmp"; cp_diff "$pitmp" results/pdfinfo.txt
   pdfinfo paper/manuscript_ejnmmi.pdf > "$pitmp"; cp_diff "$pitmp" results/pdfinfo_ejnmmi.txt
 else
-  echo "pdfinfo unavailable; manuscript.pdf was written." > "$pitmp"; cp_diff "$pitmp" results/pdfinfo.txt
   echo "pdfinfo unavailable; manuscript_ejnmmi.pdf was written." > "$pitmp"; cp_diff "$pitmp" results/pdfinfo_ejnmmi.txt
 fi
 

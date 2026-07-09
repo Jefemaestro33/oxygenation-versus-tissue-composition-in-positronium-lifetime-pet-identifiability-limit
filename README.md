@@ -9,7 +9,7 @@ experiment.
 
 **Framing rule:** this is a *limits* paper, never "o-Ps senses oxygen."
 
-## Deliverables (Codex+Claude convergent plan) — TECHNICAL PART COMPLETE
+## Technical Deliverables
 1. Non-identifiability from τ alone (rate-additivity → rank-1 Fisher). ✅ `identifiability.py` + fig4
 2. Lipid-O2 bias map in mmHg (κ_lipid swept). ✅ `forward.naive_bias_mmHg` + fig1, fig2
 3. 2-parameter CRLB for (τ, I3). ✅ analytic + Poisson-spectrum + **nuisance-profiled** (`spectrum_fim.py`) + fig3
@@ -28,7 +28,7 @@ experiment.
 - **Monte Carlo:** the MLE reaches the fixed-nuisance Poisson CRLB under the forward model (pull std ~1.00);
   this validates estimator attainability, not the unmeasured biological constants.
 
-## Status (v0, this session)
+## Status
 - Core engine built + verified; headline numbers in `results/01_headline.txt`.
 - Numbers are physically calibrated (water sensitivity ~0.09 ps/mmHg matches
   Shibuya; ~3e8 counts for 10 mmHg matches the field).
@@ -67,9 +67,6 @@ PYTHON=/Users/darellplascencia/tesis_env/bin/python ./verify_reproducibility.sh
   EJNMMI-formatted manuscript (PDF + DOCX), cover letter (PDF + DOCX), Online Resource 1
   (Monte-Carlo supplement), Fig1-Fig6, and the submission checklist. See
   `paper/submission_ejnmmi/README.md` for the upload list.
-- `paper/manuscript.md` — extended development/preprint draft retained for provenance and
-  audit history; it is not the active submission source.
-
   Target order: EJNMMI main, then EJNMMI Physics / PMB / IEEE TRPMS depending on reviewer fit.
   Preprint on bioRxiv/medRxiv only after author review. The decisive experiment spec is in the Discussion.
 

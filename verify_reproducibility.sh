@@ -45,7 +45,6 @@ say "Build manuscript and submission package"
 "$ROOT/build_paper.sh"
 
 for f in \
-  paper/manuscript.pdf \
   paper/manuscript_ejnmmi.pdf \
   paper/manuscript_ejnmmi.docx \
   paper/cover_letter_ejnmmi.pdf \
@@ -84,9 +83,6 @@ echo "ok  submission package file mapping"
 
 say "Content hashes for document artifacts"
 if command -v pdftotext >/dev/null 2>&1; then
-  check_expected_hash "pdftext paper/manuscript.pdf" \
-    "069577bedb893016714069df81b05157a43e443bf7a7c2ef25a4ad702e0b1f5b" \
-    "$(pdftotext paper/manuscript.pdf - | hash_stream)"
   check_expected_hash "pdftext paper/manuscript_ejnmmi.pdf" \
     "038431088d6eeb6478bef3b029e9f064864a38384e2714236bbd4c61f47fb072" \
     "$(pdftotext paper/manuscript_ejnmmi.pdf - | hash_stream)"
