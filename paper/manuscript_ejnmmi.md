@@ -6,7 +6,7 @@
 
 **Affiliations**
 
-1. Universidad Panamericana, Mexico City, Mexico.
+1. Universidad Panamericana, Guadalajara, Mexico.
 2. Universidad de Guadalajara, Guadalajara, Mexico.
 
 **Corresponding author:** Ernest Darell Zermeño, 0244552@up.edu.mx
