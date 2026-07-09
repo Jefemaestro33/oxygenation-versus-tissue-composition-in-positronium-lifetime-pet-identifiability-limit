@@ -6,8 +6,8 @@
 
 **Affiliations**
 
-1. Universidad Panamericana, Guadalajara, Mexico.
-2. Universidad de Guadalajara, Guadalajara, Mexico.
+1. Universidad Panamericana, Zapopan, Mexico.
+2. Universidad de Guadalajara, Zapopan, Mexico.
 
 **Corresponding author:** Ernest Darell Zermeño, 0244552@up.edu.mx
 

@@ -84,13 +84,13 @@ echo "ok  submission package file mapping"
 say "Content hashes for document artifacts"
 if command -v pdftotext >/dev/null 2>&1; then
   check_expected_hash "pdftext paper/manuscript_ejnmmi.pdf" \
-    "8cc67c8f2fbdf18acda35516f0102733b3f68d97f3145aa6177f067da025273a" \
+    "b2c1723a760ffdfc8f89807f54af61849a0c958f59140718f88a6c4105a52c9c" \
     "$(pdftotext paper/manuscript_ejnmmi.pdf - | hash_stream)"
   check_expected_hash "pdftext paper/cover_letter_ejnmmi.pdf" \
-    "e852e00d7f69d366ebbb3ac0db6a8822c63dadd74fef317b960f19c6f8f59758" \
+    "1ea2dd6ea1cb76ba8314047bd4bba2565909e88395fe89d9cb5389b8abceb65b" \
     "$(pdftotext paper/cover_letter_ejnmmi.pdf - | hash_stream)"
   check_expected_hash "pdftext paper/ESM_1_monte_carlo_validation.pdf" \
-    "56de8e629f3a55e8231c1bcb9f263e46e5053a3f98afef95aec9b5c47245a266" \
+    "9c1b3089f3e98ea097f2dc977742ae215756de77c5c87dcddcd485d4c8ecec59" \
     "$(pdftotext paper/ESM_1_monte_carlo_validation.pdf - | hash_stream)"
 else
   echo "skip PDF text hashes: pdftotext not found"
@@ -98,10 +98,10 @@ fi
 
 if command -v unzip >/dev/null 2>&1; then
   check_expected_hash "docxxml paper/manuscript_ejnmmi.docx" \
-    "f9c98f36213a76352ee1d855d1d1d7c76943b6b3aacd59e5d51eb9c8b80fc256" \
+    "f4de79b7f88c46fae0931fc4ba60fffba99fea60343e0e05adec32747fc9b5e6" \
     "$(unzip -p paper/manuscript_ejnmmi.docx word/document.xml | hash_stream)"
   check_expected_hash "docxxml paper/cover_letter_ejnmmi.docx" \
-    "98b3293c425fc42f261f91fb139cec6d370ae2b63d8a0ff217c7ef0d8467e713" \
+    "2329222b7534499851f3983ec418dc7bfd379624180f885fa8c3fe896899f464" \
     "$(unzip -p paper/cover_letter_ejnmmi.docx word/document.xml | hash_stream)"
 else
   echo "skip DOCX XML hashes: unzip not found"

@@ -13,5 +13,5 @@ This is a modelling and methods study using no human or animal data. The work is
 Sincerely,
 
 Ernest Darell Zermeño\
-Universidad Panamericana, Guadalajara; Universidad de Guadalajara\
+Universidad Panamericana, Zapopan; Universidad de Guadalajara, Zapopan\
 0244552@up.edu.mx

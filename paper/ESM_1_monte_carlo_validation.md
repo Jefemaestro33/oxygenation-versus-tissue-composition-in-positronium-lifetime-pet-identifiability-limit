@@ -6,7 +6,7 @@
 
 **Author:** Ernest Darell Zermeño
 
-**Affiliations:** Universidad Panamericana, Guadalajara, Mexico; Universidad de Guadalajara, Guadalajara, Mexico
+**Affiliations:** Universidad Panamericana, Zapopan, Mexico; Universidad de Guadalajara, Zapopan, Mexico
 
 **Correspondence:** 0244552@up.edu.mx
 
