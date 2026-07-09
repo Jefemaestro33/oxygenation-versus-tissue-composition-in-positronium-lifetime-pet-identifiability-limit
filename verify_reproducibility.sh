@@ -85,10 +85,10 @@ echo "ok  submission package file mapping"
 say "Content hashes for document artifacts"
 if command -v pdftotext >/dev/null 2>&1; then
   check_expected_hash "pdftext paper/manuscript.pdf" \
-    "5999bc803f1507623f96244b9a895d97ec5b0141bcd3495cec03bb2fe3250b91" \
+    "069577bedb893016714069df81b05157a43e443bf7a7c2ef25a4ad702e0b1f5b" \
     "$(pdftotext paper/manuscript.pdf - | hash_stream)"
   check_expected_hash "pdftext paper/manuscript_ejnmmi.pdf" \
-    "75819f7e0428c3fe02640007a4cfe3c9eb66b0e71eda93a5c7eef5c07237a185" \
+    "038431088d6eeb6478bef3b029e9f064864a38384e2714236bbd4c61f47fb072" \
     "$(pdftotext paper/manuscript_ejnmmi.pdf - | hash_stream)"
   check_expected_hash "pdftext paper/cover_letter_ejnmmi.pdf" \
     "1533ed1f9652d35080d844e579b3f3af08f50bcfab98f76aeea2df8a064812ea" \
@@ -102,7 +102,7 @@ fi
 
 if command -v unzip >/dev/null 2>&1; then
   check_expected_hash "docxxml paper/manuscript_ejnmmi.docx" \
-    "1ad41b797880dba1919392f6fe4fc05b82657d193c99c56a43446caf8029e966" \
+    "6ee51eb512f53a88cbc861abadfb8c20b44496c7b0a3c32855d3f974e9792aa4" \
     "$(unzip -p paper/manuscript_ejnmmi.docx word/document.xml | hash_stream)"
   check_expected_hash "docxxml paper/cover_letter_ejnmmi.docx" \
     "5e11912e380b2748955a6a05c846de960a6a3aa752bf28f5dd8a04bc2db0fe8e" \

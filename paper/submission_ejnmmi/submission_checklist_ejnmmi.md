@@ -33,9 +33,9 @@ Format checks:
 - The main PDF/DOCX contains figure legends only; figures are uploaded as separate high-resolution files.
 - Figures are generated at 600 dpi and have no embedded figure titles.
 - Reference citations use numbered square brackets and now follow first-appearance order.
-- DOI links are included where available; remaining preprints are labelled explicitly as arXiv/medRxiv records.
+- DOI links are included where available; remaining preprints are labelled explicitly as medRxiv records.
 - Count terminology distinguishes total in-window events (`N_total`) from o-Ps counts (`N3`).
-- The Mercolli 44Sc yield is explicitly framed as a public-preprint scenario anchor, not as a published scanner constant.
+- The Mercolli 44Sc yield is explicitly framed as a published phantom-study scenario anchor, not as a universal scanner constant.
 - Native-voxel feasibility is stated as a 5-6 order gap; the 3-4 order gap is restricted to
   millilitre-scale ROI pooling.
 

@@ -10,7 +10,8 @@ import forward as fwd
 import spectrum_fim as sfim
 
 # o-Ps triple-coincidence yield, field-anchored:
-# Sc-44 (arXiv:2506.13460): a ~5.57 mL ROI reached tau to ~5% -> ~3.6e4 o-Ps counts.
+# Sc-44 (Front Nucl Med 2025; doi:10.3389/fnume.2025.1648621):
+# a ~5.57 mL ROI reached tau to ~5% -> ~3.6e4 o-Ps counts.
 OPS_COUNTS_PER_ML = 6.5e3
 # Relative effective o-Ps yield by isotope (prompt branching / pSBR). These are
 # scenario-level scalings, not universal measured constants.
