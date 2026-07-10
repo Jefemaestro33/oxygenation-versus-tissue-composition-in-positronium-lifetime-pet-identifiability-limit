@@ -35,7 +35,7 @@ Format checks:
 - Reference citations use numbered square brackets and now follow first-appearance order.
 - DOI links are included where available; remaining preprints are labelled explicitly as medRxiv records.
 - Count terminology distinguishes total in-window events (`N_total`) from o-Ps counts (`N3`).
-- The Mercolli 44Sc yield is explicitly framed as a published phantom-study scenario anchor, not as a universal scanner constant.
+- The Mercolli ^{44}Sc yield is explicitly framed as a published phantom-study scenario anchor, not as a universal scanner constant.
 - Native-voxel feasibility is stated as a 5-6 order gap; the 3-4 order gap is restricted to
   millilitre-scale ROI pooling.
 

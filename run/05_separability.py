@@ -16,7 +16,7 @@ print(L); print("SEPARABILITY BOUNDARY (realistic counts) + virtual tumor"); pri
 
 # --- table: ROI volume (mL) needed for sigma(pO2)<=10 mmHg at hypoxic pO2=10 ---
 print("\nROI volume needed to separate pO2 (<=10 mmHg) from composition, pO2=10:")
-print(f"  {'f_lipid':>8} | {'I-124':>10} {'Ga-68':>10} {'Rb-82':>10}   (mL)")
+print(f"  {'f_lipid':>8} | {'^{124}I':>10} {'^{68}Ga':>10} {'^{82}Rb':>10}   (mL)")
 for f in [0.05, 0.10, 0.30, 0.60]:
     vols = [vx.volume_for_precision(10.0, f, 10.0, iso) for iso in ("I-124", "Ga-68", "Rb-82")]
     s = "  ".join(f"{v:9.1f}" for v in vols)
@@ -28,9 +28,9 @@ print("     so fatty tissue is paradoxically 'easier' -- but also more biased)."
 # --- Fig 5: boundary curves ---
 ff = np.linspace(0.02, 0.65, 40)
 fig, ax = plt.subplots(figsize=(6.2, 4.6))
-for iso, c in [("I-124", "C0"), ("Ga-68", "C1"), ("Rb-82", "C3")]:
+for iso, disp, c in [("I-124", "$^{124}$I", "C0"), ("Ga-68", "$^{68}$Ga", "C1"), ("Rb-82", "$^{82}$Rb", "C3")]:
     v = [vx.volume_for_precision(10.0, x, 10.0, iso) for x in ff]
-    ax.semilogy(ff, v, lw=2, color=c, label=iso)
+    ax.semilogy(ff, v, lw=2, color=c, label=disp)
 for vol, lab in [(0.064, "4 mm voxel"), (5, "small ROI"), (1000, "whole organ ~1 L")]:
     ax.axhline(vol, ls=":", color="gray")
     ax.text(0.62, vol * 1.3, lab, fontsize=7, ha="right", color="gray")

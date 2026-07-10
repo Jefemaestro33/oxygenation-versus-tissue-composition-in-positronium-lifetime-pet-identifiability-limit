@@ -3,7 +3,7 @@ SEPARABILITY BOUNDARY (realistic counts) + virtual tumor
 ========================================================================
 
 ROI volume needed to separate pO2 (<=10 mmHg) from composition, pO2=10:
-   f_lipid |      I-124      Ga-68      Rb-82   (mL)
+   f_lipid |    ^{124}I    ^{68}Ga    ^{82}Rb   (mL)
       0.05 |    19566.9    78267.8   130446.3
       0.10 |    16957.3    67829.1   113048.5
       0.30 |    10017.8    40071.3    66785.6
